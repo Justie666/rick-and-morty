@@ -5,6 +5,9 @@ export default {
     extend: {
       container: {
         center: true
+      },
+      boxShadow: {
+        main: '-2px 0px 8px 2px rgba(0, 0, 0, 0.10)'
       }
     }
   },

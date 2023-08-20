@@ -1,0 +1,1 @@
+export * from './AllCharacterPage.tsx'
