@@ -1,7 +1,7 @@
+import { MainLayout } from '@/layouts'
+import { AllCharacterPage } from '@/pages'
 import { FC } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import MainLayout from './layouts/MainLayout'
-import { AllCharacterPage } from './pages'
 
 const App: FC = () => {
   return (

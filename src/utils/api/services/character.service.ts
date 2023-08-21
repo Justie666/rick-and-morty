@@ -2,7 +2,7 @@ import { api } from '../instance'
 
 class CharacterService {
   async getAll() {
-    return api.get('/character')
+    return api.get<Characters>('/character')
   }
 }
 
