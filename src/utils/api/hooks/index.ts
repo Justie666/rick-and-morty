@@ -1,1 +1,1 @@
-export * from './useGetAllCharactersQuery'
+export * from './useRequestCharacterInfinityQuery'
