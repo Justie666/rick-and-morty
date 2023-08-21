@@ -1,7 +1,11 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, LinkProps } from 'react-router-dom'
 
-const links = [
+interface LinksArray extends LinkProps {
+  title: string
+}
+
+const links: LinksArray[] = [
   {
     title: 'Characters',
     to: '/characters'
@@ -21,7 +25,7 @@ export const Nav: FC = () => {
     <nav>
       <ul className='flex gap-3 font-semibold'>
         {links?.map(link => (
-          <Link key={link.to} to={link.to}>
+          <Link key={link.title} to={link.to}>
             {link.title}
           </Link>
         ))}
