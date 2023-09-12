@@ -1,8 +1,13 @@
 import { api } from '../../instance'
 
 interface RequestCharactersParams {
-  pageParam?: number
+  params: {
+    page?: number
+    name?: string | null
+  }
 }
 
-export const requestCharacters = ({ pageParam }: RequestCharactersParams) =>
-  api.get(`/character/?page=${pageParam}`)
+export const requestCharacters = ({ params }: RequestCharactersParams) =>
+  api.get(`/character/`, {
+    params: { ...params }
+  })

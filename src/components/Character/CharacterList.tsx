@@ -1,34 +1,39 @@
-import { CharacterCard, LoadMoreButton } from '@/components'
-import { useRequestCharacterInfinityQuery } from '@/utils/api'
+import { CharacterCard, LoadMoreButton, NotFoundBlock } from '@/components'
+import { InfiniteQueryObserverResult } from '@tanstack/react-query'
+import { AxiosResponse } from 'axios'
 import { FC } from 'react'
 
-export const CharacterList: FC = () => {
-  const { data, fetchNextPage, hasNextPage } =
-    useRequestCharacterInfinityQuery()
+interface CharacterListProps {
+  characters?: Character[]
+  fetchNextPage?: () => Promise<
+    InfiniteQueryObserverResult<AxiosResponse<any, any>, unknown>
+  >
+  hasNextPage?: boolean | undefined
+}
 
-  const characters = data?.pages.reduce(
-    (character: Character[], { data }) => [...character, ...data.results],
-    []
-  )
-
-  console.log(hasNextPage)
-
-  const click = () => {
-    fetchNextPage()
+export const CharacterList: FC<CharacterListProps> = ({
+  characters,
+  fetchNextPage,
+  hasNextPage
+}) => {
+  const onClickLoadMore = () => {
+    fetchNextPage && fetchNextPage()
   }
 
   return (
     <>
       <div className='mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
-        {data
-          ? characters?.map(character => (
-              <CharacterCard key={character.id} character={character} />
-            ))
-          : ''}
+        {characters &&
+          characters?.map(character => (
+            <CharacterCard key={character.id} character={character} />
+          ))}
       </div>
+
+      {!characters && <NotFoundBlock />}
+
       {hasNextPage && (
         <div className='mt-4 text-center'>
-          <LoadMoreButton onClick={click}>Load more</LoadMoreButton>
+          <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
         </div>
       )}
     </>

@@ -1,10 +1,13 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { requestCharacters } from '..'
 
-export const useRequestCharacterInfinityQuery = () => {
+export const useRequestCharacterInfinityQuery = (name: string | undefined) => {
   return useInfiniteQuery(
     ['characters'],
-    pageParams => requestCharacters(pageParams),
+    pageParams =>
+      requestCharacters({
+        params: { page: pageParams.pageParam, name: name }
+      }),
     {
       getNextPageParam: (lastPage, allPages) => {
         if (lastPage.data.info.next) {
