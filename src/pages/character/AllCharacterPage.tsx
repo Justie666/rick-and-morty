@@ -12,6 +12,8 @@ export const AllCharacterPage: FC = () => {
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value)
+    console.log(123)
+
     refetch()
   }
 
