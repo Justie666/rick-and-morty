@@ -1,9 +1,9 @@
-interface Characters {
+export interface Characters {
   info: Info
   results: Character[]
 }
 
-interface Character {
+export interface Character {
   id: number
   name: string
   status: string

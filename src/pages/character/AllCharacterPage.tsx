@@ -1,3 +1,4 @@
+import { Character } from '@/@types/character'
 import { CharacterList, SearchInput } from '@/components'
 import { useRequestCharacterInfinityQuery } from '@/utils/api'
 import { ChangeEvent, FC, useState } from 'react'
@@ -5,15 +6,11 @@ import { ChangeEvent, FC, useState } from 'react'
 export const AllCharacterPage: FC = () => {
   const [searchName, setSearchName] = useState('')
 
-  console.log(searchName)
-
   const { data, fetchNextPage, hasNextPage, refetch } =
     useRequestCharacterInfinityQuery(searchName)
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchName(e.target.value)
-    console.log(123)
-
     refetch()
   }
 

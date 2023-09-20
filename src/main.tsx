@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client'
 import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './index.css'
 import { MainLayout } from './layouts'
-import { AllCharacterPage } from './pages'
+import { AllCharacterPage, AllLocationPage } from './pages'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -26,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/characters',
         element: <AllCharacterPage />
+      },
+      {
+        path: '/locations',
+        element: <AllLocationPage />
       }
     ]
   }
