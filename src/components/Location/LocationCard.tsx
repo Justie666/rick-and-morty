@@ -10,7 +10,7 @@ const LocationCard: FC<LocationCardProps> = ({ location }) => {
   return (
     <Link
       to={'/'}
-      className='flex h-32 w-60 flex-col items-center justify-center rounded bg-gray-100 px-4 py-2 text-center shadow'>
+      className='flex h-32 w-full flex-col items-center justify-center rounded bg-gray-100 px-4 py-2 text-center shadow-lg'>
       <h2 className='font-bold'>{location.name}</h2>
       <p className=' text-gray-500'>{location.type}</p>
     </Link>

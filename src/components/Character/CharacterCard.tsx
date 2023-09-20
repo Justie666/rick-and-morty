@@ -1,3 +1,4 @@
+import { Character } from '@/@types/character'
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 

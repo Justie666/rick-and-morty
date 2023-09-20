@@ -1,20 +1,19 @@
-import { Location } from '@/@types/location'
+import { Episode } from '@/@types/episode'
 import { InfiniteQueryObserverResult } from '@tanstack/react-query'
 import { AxiosResponse } from 'axios'
 import { FC } from 'react'
-import { LoadMoreButton, NotFoundBlock } from '..'
-import LocationCard from './LocationCard'
+import { EpisodeCard, LoadMoreButton, NotFoundBlock } from '..'
 
-interface LocationsListProps {
-  locations?: Location[]
+interface EpisodeListProps {
+  episodes?: Episode[]
   fetchNextPage?: () => Promise<
     InfiniteQueryObserverResult<AxiosResponse<$FIXME, $FIXME>, unknown>
   >
   hasNextPage?: boolean | undefined
 }
 
-export const LocationList: FC<LocationsListProps> = ({
-  locations,
+export const EpisodeList: FC<EpisodeListProps> = ({
+  episodes,
   fetchNextPage,
   hasNextPage
 }) => {
@@ -25,14 +24,12 @@ export const LocationList: FC<LocationsListProps> = ({
   return (
     <>
       <div className='mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
-        {locations &&
-          locations?.map(location => (
-            <LocationCard key={location.id} location={location} />
+        {episodes &&
+          episodes?.map(episode => (
+            <EpisodeCard key={episode.id} episode={episode} />
           ))}
       </div>
-
-      {!locations && <NotFoundBlock />}
-
+      {!episodes && <NotFoundBlock />}
       {hasNextPage && (
         <div className='mt-4 text-center'>
           <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
