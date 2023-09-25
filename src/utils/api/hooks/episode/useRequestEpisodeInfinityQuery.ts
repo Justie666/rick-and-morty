@@ -1,11 +1,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
-import { requestEpisode } from '../requests/episode'
+import { getAllEpisode } from '../..'
 
 export const useRequestEpisodeInfinityQuery = (name: string | undefined) => {
   return useInfiniteQuery(
     ['episodes'],
     pageParams =>
-      requestEpisode({
+      getAllEpisode({
         params: { page: pageParams.pageParam, name: name }
       }),
     {

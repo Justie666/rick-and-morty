@@ -1,6 +1,6 @@
 import { Episode } from '@/@types/episode'
 import { EpisodeList, SearchInput } from '@/components'
-import { useRequestEpisodeInfinityQuery } from '@/utils/api/hooks/useRequestEpisodeInfinityQuery'
+import { useRequestEpisodeInfinityQuery } from '@/utils/api'
 import { ChangeEvent, FC, useState } from 'react'
 
 export const AllEpisodePage: FC = () => {
