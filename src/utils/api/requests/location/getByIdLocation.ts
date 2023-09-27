@@ -1,4 +1,4 @@
-import { Character } from '@/@types/character'
+import { Location } from '@/@types/location'
 import { api } from '../../instance'
 
 interface getByIdLocationParams {
@@ -8,6 +8,6 @@ interface getByIdLocationParams {
 }
 
 export const getByIdLocation = ({ params }: getByIdLocationParams) =>
-  api.get<Character>('/episode/', {
+  api.get<Location>('/location/', {
     params: { ...params }
   })
