@@ -1,5 +1,5 @@
 import { Episode } from '@/@types/episode'
-import { EpisodeList, SearchInput } from '@/components'
+import { EpisodeList, LoadMoreButton, SearchInput } from '@/components'
 import { useRequestEpisodeInfinityQuery } from '@/utils/api'
 import { ChangeEvent, FC, useState } from 'react'
 
@@ -19,6 +19,10 @@ export const AllEpisodePage: FC = () => {
     []
   )
 
+  const onClickLoadMore = () => {
+    fetchNextPage && fetchNextPage()
+  }
+
   return (
     <div>
       <SearchInput
@@ -26,11 +30,12 @@ export const AllEpisodePage: FC = () => {
         onChange={onChangeInput}
         value={searchName}
       />
-      <EpisodeList
-        episodes={episodes}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-      />
+      <EpisodeList episodes={episodes} />
+      {hasNextPage && (
+        <div className='mt-4 text-center'>
+          <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
+        </div>
+      )}
     </div>
   )
 }

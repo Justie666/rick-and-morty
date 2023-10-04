@@ -2,12 +2,8 @@ import { Location } from '@/@types/location'
 import { api } from '../../instance'
 
 interface getByIdLocationParams {
-  params: {
-    id: number
-  }
+  id: number
 }
 
-export const getByIdLocation = ({ params }: getByIdLocationParams) =>
-  api.get<Location>('/location/', {
-    params: { ...params }
-  })
+export const getByIdLocation = ({ id }: getByIdLocationParams) =>
+  api.get<Location>(`/location/${id}`)

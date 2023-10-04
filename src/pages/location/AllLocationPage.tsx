@@ -1,5 +1,5 @@
 import { Location } from '@/@types/location'
-import { LocationList, SearchInput } from '@/components'
+import { LoadMoreButton, LocationList, SearchInput } from '@/components'
 import { useRequestLocationInfinityQuery } from '@/utils/api'
 import { ChangeEvent, FC, useState } from 'react'
 
@@ -19,6 +19,10 @@ export const AllLocationPage: FC = () => {
     []
   )
 
+  const onClickLoadMore = () => {
+    fetchNextPage && fetchNextPage()
+  }
+
   return (
     <div>
       <SearchInput
@@ -26,11 +30,12 @@ export const AllLocationPage: FC = () => {
         onChange={onChangeInput}
         value={searchName}
       />
-      <LocationList
-        locations={locations}
-        fetchNextPage={fetchNextPage}
-        hasNextPage={hasNextPage}
-      />
+      <LocationList locations={locations} />
+      {hasNextPage && (
+        <div className='mt-4 text-center'>
+          <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
+        </div>
+      )}
     </div>
   )
 }

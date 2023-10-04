@@ -1,4 +1,4 @@
 export * from './Character'
 export * from './Episode'
 export * from './Location'
-export * from './ui'
+export * from './UI'

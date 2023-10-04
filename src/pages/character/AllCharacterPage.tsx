@@ -1,5 +1,5 @@
 import { Character } from '@/@types/character'
-import { CharacterList, SearchInput } from '@/components'
+import { CharacterList, LoadMoreButton, SearchInput } from '@/components'
 import { useRequestCharacterInfinityQuery } from '@/utils/api'
 import { ChangeEvent, FC, useState } from 'react'
 
@@ -19,8 +19,13 @@ export const AllCharacterPage: FC = () => {
     []
   )
 
+  // TODO create hook
+  const onClickLoadMore = () => {
+    fetchNextPage && fetchNextPage()
+  }
+
   return (
-    <div>
+    <>
       <SearchInput
         placeholder='Filter by name...'
         onChange={onChangeInput}
@@ -31,6 +36,11 @@ export const AllCharacterPage: FC = () => {
         fetchNextPage={fetchNextPage}
         hasNextPage={hasNextPage}
       />
-    </div>
+      {hasNextPage && (
+        <div className='mt-4 text-center'>
+          <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
+        </div>
+      )}
+    </>
   )
 }

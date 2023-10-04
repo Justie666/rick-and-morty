@@ -2,12 +2,8 @@ import { Character } from '@/@types/character'
 import { api } from '../../instance'
 
 interface getByIdCharacterParams {
-  params: {
-    id: number
-  }
+  id: number
 }
 
-export const getByIdCharacter = ({ params }: getByIdCharacterParams) =>
-  api.get<Character>('/character/', {
-    params: { ...params }
-  })
+export const getByIdCharacter = ({ id }: getByIdCharacterParams) =>
+  api.get<Character>(`/character/${id}`)

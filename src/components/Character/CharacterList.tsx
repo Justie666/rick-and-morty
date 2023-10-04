@@ -1,26 +1,12 @@
 import { Character } from '@/@types/character'
-import { CharacterCard, LoadMoreButton, NotFoundBlock } from '@/components'
-import { InfiniteQueryObserverResult } from '@tanstack/react-query'
-import { AxiosResponse } from 'axios'
+import { CharacterCard, NotFoundBlock } from '@/components'
 import { FC } from 'react'
 
 interface CharacterListProps {
   characters?: Character[]
-  fetchNextPage?: () => Promise<
-    InfiniteQueryObserverResult<AxiosResponse<$FIXME, $FIXME>, unknown>
-  >
-  hasNextPage?: boolean | undefined
 }
 
-export const CharacterList: FC<CharacterListProps> = ({
-  characters,
-  fetchNextPage,
-  hasNextPage
-}) => {
-  const onClickLoadMore = () => {
-    fetchNextPage && fetchNextPage()
-  }
-
+export const CharacterList: FC<CharacterListProps> = ({ characters }) => {
   return (
     <>
       <div className='mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6'>
@@ -31,12 +17,6 @@ export const CharacterList: FC<CharacterListProps> = ({
       </div>
 
       {!characters && <NotFoundBlock />}
-
-      {hasNextPage && (
-        <div className='mt-4 text-center'>
-          <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
-        </div>
-      )}
     </>
   )
 }

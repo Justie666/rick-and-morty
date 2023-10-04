@@ -16,7 +16,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
       />
       <div className='p-2'>
         <h2 className='font-semibold'>{character.name}</h2>
-        <p className='font-semibold text-gray-400'>{character.species}</p>
+        <p className='font-semibold text-gray-500'>{character.species}</p>
       </div>
     </Link>
   )

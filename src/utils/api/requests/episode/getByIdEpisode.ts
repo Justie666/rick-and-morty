@@ -2,12 +2,8 @@ import { Episode } from '@/@types/episode'
 import { api } from '../../instance'
 
 interface getByIdEpisodeParams {
-  params: {
-    id: number
-  }
+  id: number
 }
 
-export const getByIdEpisode = ({ params }: getByIdEpisodeParams) =>
-  api.get<Episode>('/episode/', {
-    params: { ...params }
-  })
+export const getByIdEpisode = ({ id }: getByIdEpisodeParams) =>
+  api.get<Episode>(`/episode/${id}`)
