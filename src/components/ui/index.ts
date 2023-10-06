@@ -1,4 +1,5 @@
 export * from './Buttons'
 export * from './Inputs'
+export * from './Modal.tsx'
 export * from './NotFoundBlock.tsx'
 export * from './PageTitle.tsx'
