@@ -25,7 +25,10 @@ export const Nav: FC = () => {
     <nav>
       <ul className='flex gap-3 font-semibold'>
         {links?.map(link => (
-          <Link key={link.title} to={link.to}>
+          <Link
+            key={link.title}
+            to={link.to}
+            className='transition-all hover:text-green-800'>
             {link.title}
           </Link>
         ))}

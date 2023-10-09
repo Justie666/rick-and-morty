@@ -1,16 +1,31 @@
-import { ButtonHTMLAttributes, FC, PropsWithChildren } from 'react'
+import { ButtonHTMLAttributes, FC } from 'react'
 
-interface LoadMoreButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+interface LoadMoreButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  hasNextPage: boolean | undefined
+  fetchNextPage: $FIXME
+}
 
-export const LoadMoreButton: FC<PropsWithChildren<LoadMoreButtonProps>> = ({
-  children,
+export const LoadMoreButton: FC<LoadMoreButtonProps> = ({
+  fetchNextPage,
+  hasNextPage,
   ...rest
 }) => {
+  const onClickLoadMore = () => {
+    fetchNextPage && fetchNextPage()
+  }
+
   return (
-    <button
-      className='rounded-lg border border-black px-4 py-1 shadow'
-      {...rest}>
-      {children}
-    </button>
+    <>
+      {hasNextPage && (
+        <div className='text-center'>
+          <button
+            className='mt-4 rounded-lg border border-black px-4 py-1 shadow'
+            onClick={onClickLoadMore}
+            {...rest}>
+            Load more
+          </button>
+        </div>
+      )}
+    </>
   )
 }

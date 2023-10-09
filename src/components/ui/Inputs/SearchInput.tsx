@@ -7,7 +7,7 @@ export const SearchInput: FC<InputHTMLAttributes<HTMLInputElement>> = ({
     <input
       type='text'
       {...rest}
-      className='h-11 rounded-lg border border-gray-500 px-4 outline-none'
+      className='h-11 w-full rounded-lg border border-gray-500 px-4 outline-none'
     />
   )
 }

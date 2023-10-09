@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { getAllEpisode } from '../..'
 
-export const useRequestEpisodeInfinityQuery = (name: string | undefined) => {
+export const useRequestEpisodeInfinityQuery = (name: string) => {
   return useInfiniteQuery(
     ['episodes'],
     pageParams =>

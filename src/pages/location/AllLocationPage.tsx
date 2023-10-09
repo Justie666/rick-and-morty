@@ -1,41 +1,34 @@
 import { Location } from '@/@types/location'
 import { LoadMoreButton, LocationList, SearchInput } from '@/components'
+import { useDebounce } from '@/utils'
 import { useRequestLocationInfinityQuery } from '@/utils/api'
-import { ChangeEvent, FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 export const AllLocationPage: FC = () => {
   const [searchName, setSearchName] = useState('')
+  const debounceSearchValue = useDebounce(searchName, 500)
 
   const { data, fetchNextPage, hasNextPage, refetch } =
     useRequestLocationInfinityQuery(searchName)
 
-  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchName(e.target.value)
+  useEffect(() => {
     refetch()
-  }
+  }, [debounceSearchValue, refetch])
 
   const locations = data?.pages.reduce(
     (location: Location[], { data }) => [...location, ...data.results],
     []
   )
 
-  const onClickLoadMore = () => {
-    fetchNextPage && fetchNextPage()
-  }
-
   return (
     <div>
       <SearchInput
         placeholder='Filter by name...'
-        onChange={onChangeInput}
+        onChange={e => setSearchName(e.target.value)}
         value={searchName}
       />
       <LocationList locations={locations} />
-      {hasNextPage && (
-        <div className='mt-4 text-center'>
-          <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
-        </div>
-      )}
+      <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
     </div>
   )
 }

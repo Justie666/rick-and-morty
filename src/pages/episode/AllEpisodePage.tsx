@@ -1,41 +1,36 @@
 import { Episode } from '@/@types/episode'
 import { EpisodeList, LoadMoreButton, SearchInput } from '@/components'
+import { useDebounce } from '@/utils'
 import { useRequestEpisodeInfinityQuery } from '@/utils/api'
-import { ChangeEvent, FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
 export const AllEpisodePage: FC = () => {
   const [searchName, setSearchName] = useState('')
+  const debounceSearchValue = useDebounce(searchName, 500)
 
   const { data, fetchNextPage, hasNextPage, refetch } =
     useRequestEpisodeInfinityQuery(searchName)
 
-  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchName(e.target.value)
+  useEffect(() => {
     refetch()
-  }
+  }, [debounceSearchValue, refetch])
 
   const episodes = data?.pages.reduce(
     (episode: Episode[], { data }) => [...episode, ...data.results],
     []
   )
 
-  const onClickLoadMore = () => {
-    fetchNextPage && fetchNextPage()
-  }
-
   return (
     <div>
-      <SearchInput
-        placeholder='Filter by name...'
-        onChange={onChangeInput}
-        value={searchName}
-      />
+      <div className='mx-auto max-w-[500px]'>
+        <SearchInput
+          placeholder='Filter by name...'
+          onChange={e => setSearchName(e.target.value)}
+          value={searchName}
+        />
+      </div>
       <EpisodeList episodes={episodes} />
-      {hasNextPage && (
-        <div className='mt-4 text-center'>
-          <LoadMoreButton onClick={onClickLoadMore}>Load more</LoadMoreButton>
-        </div>
-      )}
+      <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
     </div>
   )
 }

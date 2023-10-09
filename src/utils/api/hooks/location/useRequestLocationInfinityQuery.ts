@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { getAllLocation } from '../..'
 
-export const useRequestLocationInfinityQuery = (name: string | undefined) => {
+export const useRequestLocationInfinityQuery = (name: string) => {
   return useInfiniteQuery(
     ['locations'],
     pageParams =>
