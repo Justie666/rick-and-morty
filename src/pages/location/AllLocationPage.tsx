@@ -22,11 +22,13 @@ export const AllLocationPage: FC = () => {
 
   return (
     <div>
-      <SearchInput
-        placeholder='Filter by name...'
-        onChange={e => setSearchName(e.target.value)}
-        value={searchName}
-      />
+      <div className='mx-auto max-w-[500px]'>
+        <SearchInput
+          placeholder='Filter by name...'
+          onChange={e => setSearchName(e.target.value)}
+          value={searchName}
+        />
+      </div>
       <LocationList locations={locations} />
       <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
     </div>

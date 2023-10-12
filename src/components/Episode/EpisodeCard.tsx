@@ -11,8 +11,6 @@ export const EpisodeCard: FC<EpisodeCardProps> = ({ episode }) => {
   // TODO create hook
   const [isShow, setIsShow] = useState(false)
   const onClickCard = () => {
-    console.log(123)
-
     setIsShow(!isShow)
   }
 

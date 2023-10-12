@@ -22,11 +22,13 @@ export const AllCharacterPage: FC = () => {
 
   return (
     <>
-      <SearchInput
-        placeholder='Filter by name...'
-        onChange={e => setSearchName(e.target.value)}
-        value={searchName}
-      />
+      <div className='mx-auto max-w-[500px]'>
+        <SearchInput
+          placeholder='Filter by name...'
+          onChange={e => setSearchName(e.target.value)}
+          value={searchName}
+        />
+      </div>
       <CharacterList characters={characters} />
       <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
     </>
