@@ -8,7 +8,8 @@ import {
   AllEpisodePage,
   AllLocationPage,
   EpisodePage,
-  LocationPage
+  LocationPage,
+  NotFoundPage
 } from './pages'
 
 const queryClient = new QueryClient({
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: '/episodes/:id',
         element: <EpisodePage />
+      },
+      {
+        path: '/*',
+        element: <NotFoundPage />
       }
     ]
   }
