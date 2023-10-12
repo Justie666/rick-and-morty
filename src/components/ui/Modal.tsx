@@ -3,18 +3,18 @@ import { FC, PropsWithChildren } from 'react'
 
 interface ModalProps {
   isShow: boolean
-  onClickButton: () => void
+  toggleModal: () => void
   banner?: string
 }
 
 export const Modal: FC<PropsWithChildren<ModalProps>> = ({
   isShow,
-  onClickButton,
+  toggleModal,
   banner,
   children
 }) => {
   const ref = useOutsideClick(() => {
-    onClickButton()
+    toggleModal()
   })
 
   if (isShow) document.body.style.overflowY = 'hidden'

@@ -1,5 +1,6 @@
 import { Character } from '@/@types/character'
-import { FC, useState } from 'react'
+import { useOpenModal } from '@/utils'
+import { FC } from 'react'
 import { Modal } from '..'
 
 interface CharacterCardProps {
@@ -7,28 +8,24 @@ interface CharacterCardProps {
 }
 
 export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
-  // TODO create hook
-  const [isShow, setIsShow] = useState(false)
-  const onClickCard = () => {
-    setIsShow(!isShow)
-  }
+  const { isShow, toggleModal } = useOpenModal()
 
   return (
     <>
       <button
-        onClick={onClickCard}
+        onClick={toggleModal}
         className='overflow-hidden rounded-md shadow-lg'>
         <img
           src={character.image}
           alt={character.name}
           className='h-52 w-full object-cover'
         />
-        <div className='p-2'>
+        <div className='p-2 text-left'>
           <h2 className='font-semibold'>{character.name}</h2>
           <p className='font-semibold text-gray-500'>{character.species}</p>
         </div>
       </button>
-      <Modal isShow={isShow} onClickButton={onClickCard}>
+      <Modal isShow={isShow} toggleModal={toggleModal}>
         <img
           src={character.image}
           alt={character.name}
