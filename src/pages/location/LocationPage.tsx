@@ -1,16 +1,23 @@
-import { NotFoundBlock, PageTitle } from '@/components'
+import {
+  CharacterList,
+  LoadingBlock,
+  NotFoundBlock,
+  PageTitle
+} from '@/components'
 import { getIdsFromArray } from '@/helpers'
-import { useRequestCharacterQuery, useRequestLocationQuery } from '@/utils/api'
+import {
+  useRequestLocationQuery,
+  useRequestManyCharacterQuery
+} from '@/utils/api'
 import { FC, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 export const LocationPage: FC = () => {
-  // const [residents, setResidents] = useState<Character[]>([])
   const [idsResidents, setIdsResidents] = useState<number[]>([])
   const { id } = useParams()
 
   // TODO fix error
-  const { data, isFetching } = useRequestLocationQuery(+id)
+  const { data, isFetching, isError } = useRequestLocationQuery(+id)
 
   const location = data && data.data
 
@@ -18,21 +25,16 @@ export const LocationPage: FC = () => {
     location?.residents && setIdsResidents(getIdsFromArray(location?.residents))
   }, [location?.residents])
 
-  useEffect(() => {
-    const { data: characters } = useRequestCharacterQuery(idsResidents + '')
-    console.log(characters)
-  }, [idsResidents])
+  // TODO fix request from /character
+  const { data: characters } = useRequestManyCharacterQuery(idsResidents + '')
 
-  if (isFetching) return <div>Loading</div>
+  if (isFetching) return <LoadingBlock />
 
-  if (!data) {
+  console.log(isError)
+
+  if (!location || isError) {
     return <NotFoundBlock />
   }
-
-  // const { data } = await api.get<Character>(
-  //   `/character/${resident.match(/\d+/)}`
-  // )
-  // setResidents(prev => [...prev, data])
 
   return (
     <div>
@@ -44,7 +46,11 @@ export const LocationPage: FC = () => {
         description2={location.dimension}
         contentTitle='Residents'
       />
-      {/* {<CharacterList characters={residents} />} */}
+      {characters && characters.data.length > 1 ? (
+        <CharacterList characters={characters?.data} />
+      ) : (
+        <NotFoundBlock />
+      )}
     </div>
   )
 }

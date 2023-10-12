@@ -1,6 +1,7 @@
 import { Location } from '@/@types/location'
 import locationPng from '@assets/images/location.png'
 import { FC, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Modal } from '..'
 
 interface LocationCardProps {
@@ -13,15 +14,17 @@ const LocationCard: FC<LocationCardProps> = ({ location }) => {
   const onClickCard = () => {
     setIsShow(!isShow)
   }
+  // TODO create button for open modal and add to favorites
 
   return (
     <>
-      <button
+      <Link
+        to={`/locations/${location.id}`}
         onClick={onClickCard}
         className='flex h-32 w-full flex-col items-center justify-center rounded bg-gray-100 px-4 py-2 text-center shadow-lg'>
         <h2 className='font-bold'>{location.name}</h2>
         <p className=' text-gray-500'>{location.type}</p>
-      </button>
+      </Link>
       <Modal isShow={isShow} onClickButton={onClickCard} banner={locationPng}>
         <h2 className='text-center text-2xl font-bold'>{location.name}</h2>
         <p className='text-sm'>

@@ -3,6 +3,10 @@ export interface Characters {
   results: Character[]
 }
 
+export interface ManyCharacter {
+  data: Character[]
+}
+
 export interface Character {
   id: number
   name: string

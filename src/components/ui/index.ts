@@ -1,5 +1,6 @@
 export * from './Buttons'
 export * from './Inputs'
+export * from './LoadingBlock.tsx'
 export * from './Modal.tsx'
 export * from './NotFoundBlock.tsx'
 export * from './PageTitle.tsx'
