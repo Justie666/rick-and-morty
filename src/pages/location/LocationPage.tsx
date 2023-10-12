@@ -4,7 +4,7 @@ import {
   NotFoundBlock,
   PageTitle
 } from '@/components'
-import { getIdsFromArray } from '@/helpers'
+import { getIdsFromArray } from '@/utils'
 import {
   useRequestLocationQuery,
   useRequestManyCharacterQuery
@@ -16,8 +16,7 @@ export const LocationPage: FC = () => {
   const [idsResidents, setIdsResidents] = useState<number[]>([])
   const { id } = useParams()
 
-  // TODO fix error
-  const { data, isFetching, isError } = useRequestLocationQuery(+id)
+  const { data, isFetching, isError } = useRequestLocationQuery(id ? +id : 0)
 
   const location = data && data.data
 
@@ -25,16 +24,11 @@ export const LocationPage: FC = () => {
     location?.residents && setIdsResidents(getIdsFromArray(location?.residents))
   }, [location?.residents])
 
-  // TODO fix request from /character
   const { data: characters } = useRequestManyCharacterQuery(idsResidents + '')
 
   if (isFetching) return <LoadingBlock />
 
-  console.log(isError)
-
-  if (!location || isError) {
-    return <NotFoundBlock />
-  }
+  if (!location || isError) return <NotFoundBlock />
 
   return (
     <div>
@@ -46,8 +40,8 @@ export const LocationPage: FC = () => {
         description2={location.dimension}
         contentTitle='Residents'
       />
-      {characters && characters.data.length > 1 ? (
-        <CharacterList characters={characters?.data} />
+      {characters && characters.length > 0 ? (
+        <CharacterList characters={characters} />
       ) : (
         <NotFoundBlock />
       )}

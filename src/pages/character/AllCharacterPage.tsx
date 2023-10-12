@@ -1,5 +1,10 @@
 import { Character } from '@/@types/character'
-import { CharacterList, LoadMoreButton, SearchInput } from '@/components'
+import {
+  Banner,
+  CharacterList,
+  LoadMoreButton,
+  SearchInput
+} from '@/components'
 import { useDebounce } from '@/utils'
 import { useRequestCharacterInfinityQuery } from '@/utils/api'
 import { FC, useEffect, useState } from 'react'
@@ -22,6 +27,7 @@ export const AllCharacterPage: FC = () => {
 
   return (
     <>
+      <Banner />
       <div className='mx-auto max-w-[500px]'>
         <SearchInput
           placeholder='Filter by name...'

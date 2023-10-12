@@ -1,3 +1,4 @@
+export * from './Banner.tsx'
 export * from './Buttons'
 export * from './Inputs'
 export * from './LoadingBlock.tsx'

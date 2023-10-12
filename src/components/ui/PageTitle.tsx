@@ -1,4 +1,5 @@
 import { FC } from 'react'
+import { GoBackButton } from '.'
 
 interface PageTitleProps {
   mainTitle: string
@@ -19,6 +20,7 @@ export const PageTitle: FC<PageTitleProps> = ({
 }) => {
   return (
     <>
+      <GoBackButton />
       <div className='flex flex-col items-center gap-6'>
         <h1 className='text-center text-4xl'>{mainTitle}</h1>
         <div className='flex gap-40'>

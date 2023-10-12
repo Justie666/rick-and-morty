@@ -7,6 +7,7 @@ import {
   AllCharacterPage,
   AllEpisodePage,
   AllLocationPage,
+  EpisodePage,
   LocationPage
 } from './pages'
 
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/episodes',
         element: <AllEpisodePage />
+      },
+      {
+        path: '/episodes/:id',
+        element: <EpisodePage />
       }
     ]
   }

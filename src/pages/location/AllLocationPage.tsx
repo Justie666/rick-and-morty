@@ -1,5 +1,5 @@
 import { Location } from '@/@types/location'
-import { LoadMoreButton, LocationList, SearchInput } from '@/components'
+import { Banner, LoadMoreButton, LocationList, SearchInput } from '@/components'
 import { useDebounce } from '@/utils'
 import { useRequestLocationInfinityQuery } from '@/utils/api'
 import { FC, useEffect, useState } from 'react'
@@ -21,7 +21,8 @@ export const AllLocationPage: FC = () => {
   )
 
   return (
-    <div>
+    <>
+      <Banner />
       <div className='mx-auto max-w-[500px]'>
         <SearchInput
           placeholder='Filter by name...'
@@ -31,6 +32,6 @@ export const AllLocationPage: FC = () => {
       </div>
       <LocationList locations={locations} />
       <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
-    </div>
+    </>
   )
 }

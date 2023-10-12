@@ -1,5 +1,5 @@
 import { Episode } from '@/@types/episode'
-import { EpisodeList, LoadMoreButton, SearchInput } from '@/components'
+import { Banner, EpisodeList, LoadMoreButton, SearchInput } from '@/components'
 import { useDebounce } from '@/utils'
 import { useRequestEpisodeInfinityQuery } from '@/utils/api'
 import { FC, useEffect, useState } from 'react'
@@ -21,7 +21,8 @@ export const AllEpisodePage: FC = () => {
   )
 
   return (
-    <div>
+    <>
+      <Banner />
       <div className='mx-auto max-w-[500px]'>
         <SearchInput
           placeholder='Filter by name...'
@@ -31,6 +32,6 @@ export const AllEpisodePage: FC = () => {
       </div>
       <EpisodeList episodes={episodes} />
       <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
-    </div>
+    </>
   )
 }
