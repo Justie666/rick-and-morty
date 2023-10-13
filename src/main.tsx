@@ -11,6 +11,7 @@ import {
   LocationPage,
   NotFoundPage
 } from './pages'
+import { CharacterPage } from './pages/character/CharacterPage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: '/characters',
         element: <AllCharacterPage />
+      },
+      {
+        path: '/characters/:id',
+        element: <CharacterPage />
       },
       {
         path: '/locations',

@@ -24,6 +24,7 @@ export const LocationPage: FC = () => {
     location?.residents && setIdsResidents(getIdsFromArray(location?.residents))
   }, [location?.residents])
 
+  // TODO fix type
   const { data: characters } = useRequestManyCharacterQuery(idsResidents + '')
 
   if (isFetching) return <LoadingBlock />
