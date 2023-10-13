@@ -6,4 +6,4 @@ interface getByIdCharacterParams {
 }
 
 export const getByIdManyCharacter = ({ ids }: getByIdCharacterParams) =>
-  api.get<Character[]>(`/character/${ids}`)
+  api.get<Character[] | Character>(`/character/${ids}`)

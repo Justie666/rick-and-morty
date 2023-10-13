@@ -68,10 +68,7 @@ export const CharacterPage: FC = () => {
       ]
     : []
 
-  // TODO fix type
   const { data: episodes } = useRequestManyEpisodeQuery(idsEpisodes + '')
-
-  // const episodeInfoArray: infoArrayType = []
 
   if (isFetching) return <LoadingBlock />
   if (!character || isError) return <NotFoundPage />
@@ -89,7 +86,7 @@ export const CharacterPage: FC = () => {
         />
       </div>
       <h1 className='mt-2 text-center text-5xl'>{character.name}</h1>
-      <div className='mt-10 grid grid-cols-1 gap-10 gap-6 sm:grid-cols-2'>
+      <div className='mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-6'>
         <div>
           <h2 className='text-2xl font-semibold text-gray-500'>Information</h2>
           {characterInfoArray.length > 0 &&

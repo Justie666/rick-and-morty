@@ -24,7 +24,6 @@ export const EpisodePage: FC = () => {
     episode?.characters && setIdsCast(getIdsFromArray(episode.characters))
   }, [episode?.characters])
 
-  // TODO fix type
   const { data: characters } = useRequestManyCharacterQuery(idsCast + '')
 
   if (isFetching) return <LoadingBlock />

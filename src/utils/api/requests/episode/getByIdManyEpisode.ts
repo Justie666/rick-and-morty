@@ -6,4 +6,4 @@ interface getByIdCharacterParams {
 }
 
 export const getByIdManyEpisode = ({ ids }: getByIdCharacterParams) =>
-  api.get<Episode[]>(`/episode/${ids}`)
+  api.get<Episode[] | Episode>(`/episode/${ids}`)
