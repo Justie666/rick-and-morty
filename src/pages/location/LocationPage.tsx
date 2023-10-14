@@ -41,7 +41,7 @@ export const LocationPage: FC = () => {
         contentTitle='Residents'
       />
       {characters && characters.length > 0 ? (
-        <CharacterList characters={characters} />
+        <CharacterList characters={characters} isFetching={isFetching} />
       ) : (
         <NotFoundBlock />
       )}

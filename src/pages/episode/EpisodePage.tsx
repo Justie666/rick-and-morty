@@ -40,7 +40,7 @@ export const EpisodePage: FC = () => {
         contentTitle='Cast'
       />
       {characters && characters.length > 0 ? (
-        <CharacterList characters={characters} />
+        <CharacterList characters={characters} isFetching={isFetching} />
       ) : (
         <NotFoundBlock />
       )}
