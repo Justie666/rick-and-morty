@@ -11,18 +11,16 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.35.7",
-    "@types/lodash.debounce": "^4.0.7",
     "axios": "^1.5.1",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-hook-form": "^7.47.0",
-    "react-icons": "^4.11.0",
     "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.16.0",
-    "react-select": "^5.7.7"
+    "vite-plugin-require": "^1.1.11"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.5.6",
     "@types/node": "^20.8.0",
     "@types/react": "^18.2.24",
     "@types/react-dom": "^18.2.8",

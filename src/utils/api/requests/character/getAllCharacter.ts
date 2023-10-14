@@ -3,8 +3,10 @@ import { api } from '../../instance'
 
 interface getAllCharacterParams {
   params: {
-    page?: number
-    name?: string | null
+    page: number
+    name: string
+    status: string
+    gender: string
   }
 }
 
