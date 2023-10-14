@@ -9,7 +9,7 @@ export const GoBackButton: FC<GoBackButtonProps> = ({ ...rest }) => {
     <button
       onClick={() => navigate(-1)}
       {...rest}
-      className='mb-2 rounded border border-black p-2 text-xs font-bold uppercase sm:absolute sm:mb-0'>
+      className='mb-2 rounded border border-black p-2 text-xs font-bold uppercase transition-all hover:border-green-800 hover:text-green-800 sm:absolute sm:mb-0'>
       Go back
     </button>
   )

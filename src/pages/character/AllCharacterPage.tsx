@@ -13,7 +13,7 @@ export const AllCharacterPage: FC = () => {
   const [searchName, setSearchName] = useState('')
   const debounceSearchValue = useDebounce(searchName, 500)
 
-  const { data, fetchNextPage, hasNextPage, refetch } =
+  const { data, fetchNextPage, hasNextPage, refetch, isFetching } =
     useRequestCharacterInfinityQuery(debounceSearchValue)
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const AllCharacterPage: FC = () => {
           value={searchName}
         />
       </div>
-      <CharacterList characters={characters} />
+      <CharacterList characters={characters} isFetching={isFetching} />
       <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
     </>
   )

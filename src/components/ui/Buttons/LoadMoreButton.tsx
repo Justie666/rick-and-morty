@@ -19,7 +19,7 @@ export const LoadMoreButton: FC<LoadMoreButtonProps> = ({
       {hasNextPage && (
         <div className='text-center'>
           <button
-            className='mt-4 rounded-lg border border-black px-4 py-1 shadow'
+            className='mt-4 rounded-lg border border-black px-4 py-1 shadow transition-all hover:border-green-800 hover:text-green-800'
             onClick={onClickLoadMore}
             {...rest}>
             Load more

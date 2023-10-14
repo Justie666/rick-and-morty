@@ -3,12 +3,13 @@ import { Banner, LoadMoreButton, LocationList, SearchInput } from '@/components'
 import { useDebounce } from '@/utils'
 import { useRequestLocationInfinityQuery } from '@/utils/api'
 import { FC, useEffect, useState } from 'react'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 export const AllLocationPage: FC = () => {
   const [searchName, setSearchName] = useState('')
   const debounceSearchValue = useDebounce(searchName, 500)
 
-  const { data, fetchNextPage, hasNextPage, refetch } =
+  const { data, fetchNextPage, hasNextPage, refetch, isFetching } =
     useRequestLocationInfinityQuery(searchName)
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const AllLocationPage: FC = () => {
           value={searchName}
         />
       </div>
-      <LocationList locations={locations} />
+      <LocationList locations={locations} isFetching={isFetching} />
       <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
     </>
   )

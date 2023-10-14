@@ -8,7 +8,7 @@ export const AllEpisodePage: FC = () => {
   const [searchName, setSearchName] = useState('')
   const debounceSearchValue = useDebounce(searchName, 500)
 
-  const { data, fetchNextPage, hasNextPage, refetch } =
+  const { data, fetchNextPage, hasNextPage, refetch, isFetching } =
     useRequestEpisodeInfinityQuery(searchName)
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const AllEpisodePage: FC = () => {
           value={searchName}
         />
       </div>
-      <EpisodeList episodes={episodes} />
+      <EpisodeList episodes={episodes} isFetching={isFetching} />
       <LoadMoreButton fetchNextPage={fetchNextPage} hasNextPage={hasNextPage} />
     </>
   )

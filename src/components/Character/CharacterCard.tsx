@@ -11,7 +11,7 @@ export const CharacterCard: FC<CharacterCardProps> = ({ character }) => {
     <>
       <Link
         to={`/characters/${character.id}`}
-        className='overflow-hidden rounded-md shadow-lg'>
+        className='overflow-hidden rounded-md shadow-lg transition-transform hover:-translate-y-3'>
         <img
           src={character.image}
           alt={character.name}
